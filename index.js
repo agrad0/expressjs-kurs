@@ -5,12 +5,15 @@ const moongose = require('mongoose');
 
 const Post = require('./models/PostModel');
 
+
+
 moongose.connect('mongodb://127.0.0.1:27017/express-blog');
 
-const postController = require('./controllers/postController');
+
 
 
 app.use('/files', express.static('public'));
+app.use(express.urlencoded({ extended: true }))
 
 app.engine('hbs', hbs.engine({extname: '.hbs'}));
 app.set('view engine', 'hbs');
@@ -40,7 +43,11 @@ app.get('/', function(req, res){
 
 
 
-app.get('/blog', postController.index)
+const blogRouter = require('./routes/blogRoutes.js');
+const userRouter = require('./routes/userRoutes.js');
+
+app.use('/blog', blogRouter);
+app.use('/user', userRouter);
 
 
 app.listen(8080, function(){
