@@ -5,8 +5,8 @@
     <div class="card mb-3">
         <div class="card-body">
             <h2 class="card-title">{{title}}</h2>
-            <h2 class="card-text">{{content}}</h2>
-            <h2 class="card-text">{{author}}</h2>
+            <p class="card-text">{{content}}</p>
+            <p class="card-text"><a href='/blog?authorId={{author._id}}'>{{author.name}}</a></p>
             <a href="/blog/{{_id}}" class="btn btn-primary">More</a>
         </div>
     </div>
