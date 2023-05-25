@@ -50,7 +50,7 @@ module.exports = {
         Post.findByIdAndUpdate(req.params.id, req.body).then((post) => {
             res.redirect('/blog/' + post._id)
         }).catch((err) => {
-            console.log(err)
+            res.send(err)
         })
     },
     delete: (req, res) => {        
@@ -58,7 +58,7 @@ module.exports = {
         .then(() => {
             User.updateOne({ _id: res.locals.userId }, { $pull: { posts: req.params.id }})
         }).catch((err) => {
-            console.log(err)
+            res.send(err)
         })
         res.redirect('/blog');
     },
@@ -71,7 +71,7 @@ module.exports = {
 
 
         }).catch((err) => {
-            console.log(err)
+            res.send(err)
         })
     }
 }
