@@ -25,7 +25,7 @@ module.exports = {
             .then((post) => {
 
                 // res.send('Get posts error')
-                // console.log(posts)
+                console.log(post)
                 res.render('blogViews/singlePost', post)
 
 
@@ -57,6 +57,9 @@ module.exports = {
         Post.findByIdAndDelete(req.params.id)
         .then(() => {
             User.updateOne({ _id: res.locals.userId }, { $pull: { posts: req.params.id }})
+            .catch((err) => {
+                res.send(err)
+            })
         }).catch((err) => {
             res.send(err)
         })

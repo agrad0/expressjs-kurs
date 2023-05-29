@@ -23,7 +23,7 @@ module.exports = {
             .then((post) => {
                 res.status(200).json(post)
             }).catch((err) => {
-                res.send(404).json({error: 'Resource not found'})
+                res.status(404).json({error: 'Resource not found'})
             })
     }
 }
